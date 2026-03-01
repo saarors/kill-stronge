@@ -1,8 +1,3 @@
 @echo off
-set "file=domains.txt"
-
-for /f "usebackq delims=" %%a in ("%file%") do (
-    curl -s -o nul -IL %%a
-)
-
-pause
+start "" powershell -WindowStyle Hidden -Command "Get-Content 'domains.txt' | ForEach-Object { Start-Process curl -ArgumentList '-s -o nul -IL ' + $_ -WindowStyle Hidden }"
+exit
